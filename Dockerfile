@@ -3,10 +3,10 @@ FROM alpine:latest
 ENV VERSION=v4.2.2 NPM_VERSION=2
 
 # Credits to https://github.com/mhart/alpine-node/blob/master/Dockerfile
-RUN apk add --update curl make gcc g++ python linux-headers paxctl libgcc libstdc++ && \
+RUN apk add --update bash curl make gcc g++ python linux-headers paxctl libgcc libstdc++ && \
   curl -sSL https://nodejs.org/dist/${VERSION}/node-${VERSION}.tar.gz | tar -xz && \
   cd /node-${VERSION} && \
-  ./configure --prefix=/usr ${CONFIG_FLAGS} && \
+  ./configure --prefix=/usr && \
   make -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
   make install && \
   paxctl -cm /usr/bin/node && \
@@ -15,7 +15,8 @@ RUN apk add --update curl make gcc g++ python linux-headers paxctl libgcc libstd
     npm install -g npm@${NPM_VERSION} && \
     find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
   fi && \
-  apk del curl make gcc g++ python linux-headers paxctl ${DEL_PKGS} && \
+  npm install -g node-gyp && \
+  apk del curl make gcc g++ python linux-headers paxctl && \
   rm -rf /etc/ssl /node-${VERSION} ${RM_DIRS} \
     /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp \
     /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
