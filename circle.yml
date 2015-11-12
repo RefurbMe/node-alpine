@@ -8,8 +8,8 @@ dependencies:
 
 test:
   override:
-    - docker run --rm refurbme/node-alpine node -v
-    - docker run --rm refurbme/node-alpine npm -v
+    - docker run refurbme/node-alpine node -v
+    - docker run refurbme/node-alpine npm -v
     - docker images | grep node-alpine
 
 deployment:
