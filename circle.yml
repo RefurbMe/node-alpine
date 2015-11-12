@@ -1,0 +1,18 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker build -t refurbme/node-alpine .
+
+test:
+  override:
+    - echo "Success build"
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push refurbme/node-alpine
