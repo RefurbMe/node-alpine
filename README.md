@@ -2,9 +2,9 @@
 
 Docker image: `refurbme/node-alpine`
 
-Size: `34.85 MB`
+Size: `41.42 MB`
 
-Size Compressed: `12 MB`
+Size Compressed: `14 MB`
 
 ## Packages
  - alpine@`latest`
