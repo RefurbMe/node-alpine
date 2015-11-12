@@ -9,6 +9,7 @@ dependencies:
 test:
   override:
     - echo "Success build"
+    - docker images | grep nginx-grunt-alpine
 
 deployment:
   hub:
