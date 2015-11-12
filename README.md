@@ -1,7 +1,10 @@
 # NodeJS on Linux Alpine
 
 Docker image: `refurbme/node-alpine`
+
 Size: `34.85 MB`
+
+Size Compressed: `12 MB`
 
 ## Packages
  - alpine@`latest`
