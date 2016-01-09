@@ -8,8 +8,8 @@ Size Compressed: `14 MB`
 
 ## Packages
  - alpine@`3.3`
- - node@`5.4.0`
- - npm@`3.5.3`
+ - node@`4.2.4`
+ - npm@`2`
 
 ## Credits
  - [/mhart/alpine-node/](https://github.com/mhart/alpine-node/blob/master/Dockerfile)
