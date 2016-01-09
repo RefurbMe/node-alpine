@@ -2,7 +2,7 @@ machine:
   services:
     - docker
   pre:
-    - echo 'export IMAGE_NAME=${CIRCLE_PROJECT_USERNAME,,}/${CIRCLE_PROJECT_REPONAME,,}' >> ~/.circlerc
+    - echo 'export IMAGE_NAME=${CIRCLE_PROJECT_USERNAME,,}/${CIRCLE_PROJECT_REPONAME,,}:5' >> ~/.circlerc
 
 dependencies:
   override:
@@ -22,4 +22,4 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker-scripts squash $IMAGE_NAME
       - docker images | grep $IMAGE_NAME
-      - docker push $IMAGE_NAME:4
+      - docker push $IMAGE_NAME
