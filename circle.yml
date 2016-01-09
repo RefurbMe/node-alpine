@@ -2,7 +2,7 @@ machine:
   services:
     - docker
   pre:
-    - echo 'export IMAGE_NAME=${CIRCLE_PROJECT_USERNAME,,}/${CIRCLE_PROJECT_REPONAME,,}:5' >> ~/.circlerc
+    - echo 'export IMAGE_NAME=${CIRCLE_PROJECT_USERNAME,,}/${CIRCLE_PROJECT_REPONAME,,}:4' >> ~/.circlerc
 
 dependencies:
   override:
