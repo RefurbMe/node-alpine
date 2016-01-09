@@ -22,4 +22,4 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker-scripts squash $IMAGE_NAME
       - docker images | grep $IMAGE_NAME
-      - docker push $IMAGE_NAME
+      - docker push $IMAGE_NAME:5
