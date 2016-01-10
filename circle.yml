@@ -2,24 +2,25 @@ machine:
   services:
     - docker
   pre:
-    - echo 'export IMAGE_NAME=${CIRCLE_PROJECT_USERNAME,,}/${CIRCLE_PROJECT_REPONAME,,}:4' >> ~/.circlerc
+    - if [ $CIRCLE_BRANCH != 'master' ]; then echo 'export TAG_NAME=:$CIRCLE_BRANCH' >> ~/.circlerc; fi
+    - echo 'export IMAGE_NAME=${CIRCLE_PROJECT_USERNAME,,}/${CIRCLE_PROJECT_REPONAME,,}' >> ~/.circlerc
 
 dependencies:
   override:
-    - docker build -t $IMAGE_NAME .
+    - docker build -t $IMAGE_NAME$TAG_NAME .
 
 test:
   override:
     - docker run $IMAGE_NAME node -v
     - docker run $IMAGE_NAME npm -v
-    - docker images | grep ${CIRCLE_PROJECT_USERNAME,,}/${CIRCLE_PROJECT_REPONAME,,}
+    - docker images | grep $IMAGE_NAME
 
 deployment:
   hub:
-    branch: master
+    branch: /node\-*/
     commands:
       - sudo pip install docker-scripts
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker-scripts squash $IMAGE_NAME
-      - docker images | grep ${CIRCLE_PROJECT_USERNAME,,}/${CIRCLE_PROJECT_REPONAME,,}
-      - docker push $IMAGE_NAME
+      - docker-scripts squash $IMAGE_NAME$TAG_NAME
+      - docker images | grep $IMAGE_NAME
+      - docker push $IMAGE_NAME$TAG_NAME
