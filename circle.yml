@@ -11,8 +11,8 @@ dependencies:
 
 test:
   override:
-    - docker run $IMAGE_NAME node -v
-    - docker run $IMAGE_NAME npm -v
+    - docker run $IMAGE_NAME:$TAG_NAME node -v
+    - docker run $IMAGE_NAME:$TAG_NAME npm -v
     - docker images | grep $IMAGE_NAME
 
 deployment:

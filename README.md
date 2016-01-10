@@ -2,7 +2,7 @@
 
 Docker image: `refurbme/node-alpine`
 
-Size: `37 MB`
+Size: `39.46 MB`
 
 Size Compressed: `14 MB`
 
