@@ -1,6 +1,6 @@
 FROM alpine:3.3
 
-ENV VERSION=v4.2.4 NPM_VERSION=2
+ENV VERSION=v4.3.0 NPM_VERSION=2
 
 RUN apk add --update bash curl make gcc g++ binutils-gold python linux-headers paxctl libgcc libstdc++ && \
   curl -sSL https://nodejs.org/dist/${VERSION}/node-${VERSION}.tar.gz | tar -xz && \
