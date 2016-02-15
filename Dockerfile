@@ -2,7 +2,11 @@ FROM alpine:3.3
 
 ENV VERSION=v4.3.0 NPM_VERSION=2
 
-RUN apk add --update bash curl make gcc g++ binutils-gold python linux-headers paxctl libgcc libstdc++ && \
+ENV CONFIG_FLAGS=
+RM_DIRS=/usr/include
+DEL_PKGS="libgcc libstdc++"
+
+RUN apk add --no-cache bash curl make gcc g++ binutils-gold python linux-headers paxctl libgcc libstdc++ && \
   curl -sSL https://nodejs.org/dist/${VERSION}/node-${VERSION}.tar.gz | tar -xz && \
   cd /node-${VERSION} && \
   ./configure --prefix=/usr ${CONFIG_FLAGS} && \
