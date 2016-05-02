@@ -2,7 +2,7 @@ machine:
   services:
     - docker
   pre:
-    - echo 'export IMAGE_NAME=${CIRCLE_PROJECT_USERNAME,,}/${CIRCLE_PROJECT_REPONAME,,}' >> ~/.circlerc
+    - echo 'export IMAGE_NAME=refurbme/node-alpine:node-6' >> ~/.circlerc
 
 dependencies:
   override:
@@ -16,7 +16,7 @@ test:
 
 deployment:
   hub:
-    branch: master
+    branch: node-6
     commands:
       - sudo pip install docker-scripts
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
