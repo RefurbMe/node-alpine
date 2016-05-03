@@ -2,14 +2,18 @@
 
 Docker image: `refurbme/node-alpine`
 
-Size: `37 MB`
+Dockerfile are located in the branches
 
-Size Compressed: `14 MB`
+## NodeJS v4.4.3
 
-## Packages
- - alpine@`3.3`
- - node@`4.3.1`
- - npm@`2`
+```
+git checkout node-4
+```
 
-## Credits
- - [/mhart/alpine-node/](https://github.com/mhart/alpine-node/blob/master/Dockerfile)
+v4.4.3
+
+## NodeJS v6.0.0
+
+```
+git checkout node-6
+```
