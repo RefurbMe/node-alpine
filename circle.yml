@@ -12,7 +12,7 @@ test:
   override:
     - docker run $IMAGE_NAME node -v
     - docker run $IMAGE_NAME npm -v
-    - docker images | grep $IMAGE_NAME
+    - docker images | grep refurbme/node-alpine
 
 deployment:
   hub:
@@ -21,5 +21,5 @@ deployment:
       - sudo pip install docker-scripts
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker-scripts squash $IMAGE_NAME
-      - docker images | grep $IMAGE_NAME
-      - docker push $IMAGE_NAME
+      - docker images | grep refurbme/node-alpine
+      - docker push refurbme/node-alpine
