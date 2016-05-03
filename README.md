@@ -8,7 +8,7 @@ Size Compressed: `14 MB`
 
 ## Packages
  - alpine@`3.3`
- - node@`4.2.4`
+ - node@`4.4.3`
  - npm@`2`
 
 ## Credits
