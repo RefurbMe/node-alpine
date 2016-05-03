@@ -7,7 +7,7 @@ FROM alpine:3.3
 ENV VERSION=v6.0.0 NPM_VERSION=3
 
 # For base builds
-ENV DEL_PKGS="libgcc libstdc++" RM_DIRS=/usr/include
+ENV RM_DIRS=/usr/include
 
 RUN apk add --no-cache curl make gcc g++ binutils-gold python linux-headers paxctl libgcc libstdc++ gnupg && \
   gpg --keyserver pool.sks-keyservers.net --recv-keys 9554F04D7259F04124DE6B476D5A82AC7E37093B && \
@@ -33,7 +33,7 @@ RUN apk add --no-cache curl make gcc g++ binutils-gold python linux-headers paxc
     npm install -g npm@${NPM_VERSION} && \
     find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
   fi && \
-  apk del curl make gcc g++ binutils-gold python linux-headers paxctl gnupg ${DEL_PKGS} && \
+  apk del curl make gcc g++ binutils-gold python linux-headers paxctl gnupg && \
   rm -rf /etc/ssl /node-${VERSION}.tar.gz /SHASUMS256.txt.asc /node-${VERSION} ${RM_DIRS} \
     /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /root/.gnupg \
     /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
