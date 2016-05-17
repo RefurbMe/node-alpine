@@ -1,6 +1,6 @@
 FROM alpine:3.3
 
-ENV VERSION=v4.4.3 NPM_VERSION=2
+ENV VERSION=v4.4.4 NPM_VERSION=2
 
 # For base builds
 ENV RM_DIRS=/usr/include
