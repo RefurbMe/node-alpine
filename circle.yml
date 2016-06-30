@@ -2,7 +2,7 @@ machine:
   services:
     - docker
   pre:
-    - echo 'export IMAGE_NAME=refurbme/node-alpine:node-4' >> ~/.circlerc
+    - echo 'export IMAGE_NAME=refurbme/node-alpine:node-4-full' >> ~/.circlerc
 
 dependencies:
   override:
@@ -16,7 +16,7 @@ test:
 
 deployment:
   hub:
-    branch: node-4
+    branch: node-4-full
     commands:
       - sudo pip install docker-scripts
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
