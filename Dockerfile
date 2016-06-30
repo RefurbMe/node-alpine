@@ -1,6 +1,6 @@
-FROM alpine:3.3
+FROM alpine:3.4
 
-ENV VERSION=v4.4.4 NPM_VERSION=2
+ENV VERSION=v4.4.7 NPM_VERSION=2
 
 # For base builds
 ENV RM_DIRS=/usr/include
@@ -29,7 +29,6 @@ RUN apk add --no-cache curl make gcc g++ binutils-gold python linux-headers paxc
     npm install -g npm@${NPM_VERSION} && \
     find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
   fi && \
-  apk del make gcc g++ binutils-gold python linux-headers paxctl gnupg && \
   rm -rf /etc/ssl /node-${VERSION}.tar.gz /SHASUMS256.txt.asc /node-${VERSION} ${RM_DIRS} \
     /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /root/.gnupg \
     /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html && \
