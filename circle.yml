@@ -10,7 +10,6 @@ dependencies:
 
 test:
   override:
-    - docker run --privileged $IMAGE_NAME ntpd -d -q -n -p pool.ntp.org
     - docker run $IMAGE_NAME node -v
     - docker run $IMAGE_NAME npm -v
     - docker images | grep refurbme/node-alpine
