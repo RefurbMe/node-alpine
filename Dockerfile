@@ -5,7 +5,7 @@ ENV VERSION=v4.4.7 NPM_VERSION=2
 # For base builds
 ENV RM_DIRS=/usr/include
 
-RUN apk add --no-cache curl make gcc g++ binutils-gold python linux-headers paxctl libgcc libstdc++ gnupg bash && \
+RUN apk add --no-cache curl make gcc g++ binutils-gold python linux-headers paxctl libgcc libstdc++ gnupg bash openntpd && \
   gpg --keyserver pool.sks-keyservers.net --recv-keys 9554F04D7259F04124DE6B476D5A82AC7E37093B && \
   gpg --keyserver pool.sks-keyservers.net --recv-keys 94AE36675C464D64BAFA68DD7434390BDBE9B9C5 && \
   gpg --keyserver pool.sks-keyservers.net --recv-keys 0034A06D9D9B0064CE8ADF6BF1747F4AD2306D93 && \
@@ -32,4 +32,7 @@ RUN apk add --no-cache curl make gcc g++ binutils-gold python linux-headers paxc
   rm -rf /node-${VERSION}.tar.gz /SHASUMS256.txt.asc /node-${VERSION} /usr/share/man \
     /tmp/* /var/cache/apk/* /root/.gnupg /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc \
     /usr/lib/node_modules/npm/html && \
-  npm set progress=false
+  npm set progress=false && \
+  echo '#!/bin/sh' > /etc/periodic/daily/do-ntp && \
+  echo 'ntpd -d -q -n -p pool.ntp.org' >> /etc/periodic/daily/do-ntp && \
+  ntpd -d -q -n -p pool.ntp.org
