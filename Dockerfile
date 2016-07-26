@@ -35,4 +35,4 @@ RUN apk add --no-cache curl make gcc g++ binutils-gold python linux-headers paxc
   npm set progress=false && \
   echo '#!/bin/sh' > /etc/periodic/daily/do-ntp && \
   echo 'ntpd -d -q -n -p pool.ntp.org' >> /etc/periodic/daily/do-ntp && \
-  ntpd -d -q -n -p pool.ntp.org
+  chmod -R +x /etc/periodic/
